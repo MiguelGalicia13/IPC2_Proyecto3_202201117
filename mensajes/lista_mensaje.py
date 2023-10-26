@@ -28,3 +28,6 @@ class lista_mensaje:
             buffer += "FECHA: "+aux.mensaje.fecha+" TEXTO: "+aux.mensaje.texto+"\n"
             aux = aux.siguiente
         return buffer
+    def inicializar(self):
+        self.head = None
+        self.mensajes_count = 0
