@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<diccionario>
+    <sentimientos_positivos>
+        <palabra> alegría </palabra>
+        <palabra> felicidad </palabra>
+        <palabra> emoción </palabra>
+        <palabra> satisfacción </palabra>
+        <palabra> esperanzado </palabra>
+        <palabra> agradecido </palabra>
+        <palabra> amado </palabra>
+        <palabra> aceptado </palabra>
+        <palabra> seguro </palabra>
+    </sentimientos_positivos>
+    <sentimientos_negativos>
+        <palabra> tristeza </palabra>
+        <palabra> enojo </palabra>
+        <palabra> decepción </palabra>
+        <palabra> miedo </palabra>
+        <palabra> estrés </palabra>
+        <palabra> cansado </palabra>
+        <palabra> rechazado </palabra>
+        <palabra> solo </palabra>
+        <palabra> inseguro </palabra>
+    </sentimientos_negativos>
+</diccionario>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MENSAJES>
+    <MENSAJE>
+        <FECHA>Guatemala, 20/07/2023 10:00 hrs.</FECHA>
+        <TEXTO>¡Feliz cumpleaños, @estudiante03! Te deseo lo mejor en este día tan especial.</TEXTO>
+    </MENSAJE>
+    <MENSAJE>
+        <FECHA>Guatemala, 25/08/2023 17:00 hrs.</FECHA>
+        <TEXTO>Estimado @profesor01, Te escribo para agradecerte tu apoyo durante este semestre. Tu enseñanza ha sido invaluable para mí.
+        Un saludo cordial,
+        @estudiante04
+        </TEXTO>
+    </MENSAJE>
+    <MENSAJE>
+        <FECHA>Guatemala, 01/09/2023 12:00 hrs.</FECHA>
+        <TEXTO>Hola a todos,
+        Les informo que la próxima reunión del club de ciencias se llevará a cabo el viernes 3 de septiembre a las 18:00 hrs. en el aula 101.
+        La agenda para la reunión incluye:
+        * Presentación de los nuevos proyectos de investigación
+        * Discusión sobre la próxima feria de ciencias
+        * Elección de nuevos miembros del club
+        Les esperamos a todos!
+        Saludos,
+        @presidenteClubCiencias
+        </TEXTO>
+    </MENSAJE>
+    <MENSAJE>
+        <FECHA>Guatemala, 15/10/2023 18:00 hrs.</FECHA>
+        <TEXTO>¡Felicidades por tu nuevo trabajo, @estudiante05! Te deseo mucho éxito en esta nueva etapa de tu vida.</TEXTO>
+    </MENSAJE>
+    <MENSAJE>
+        <FECHA>Guatemala, 22/11/2023 20:00 hrs.</FECHA>
+        <TEXTO>Me da mucha tristeza saber que te vas a mudar. Te voy a extrañar mucho.</TEXTO>
+    </MENSAJE>
+    <MENSAJE>
+        <FECHA>Guatemala, 06/12/2023 14:00 hrs.</FECHA>
+        <TEXTO>¡Te deseo una feliz Navidad y un próspero año nuevo!</TEXTO>
+    </MENSAJE>
+</MENSAJES>
