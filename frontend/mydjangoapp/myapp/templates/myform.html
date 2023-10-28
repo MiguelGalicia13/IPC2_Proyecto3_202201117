@@ -10,7 +10,9 @@
     <body>
         <h1>Personal Information Form</h1>
         <form method="POST" id="myform" enctype="multipart/form-data">
+            {% csrf_token %}
             <input type="file" id="fileInput" name ="file"/>
+            <button type="button" id="submitButton">Enviar a Flask</button>
         </form>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
@@ -37,4 +39,3 @@
         </script>  
     </body>
     </html>
-        
