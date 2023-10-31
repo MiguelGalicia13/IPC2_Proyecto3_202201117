@@ -7,35 +7,110 @@
                 
         
     </head>
+    <style>
+        body{
+            background-color: #99caf5;
+        }
+        .titulo{
+            text-align: center;
+            color: #000000;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .container{
+            display: flex;
+            justify-content: center;
+        }
+        .send{
+            border: none;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            background-color: #c4f8c6;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25), inset 0 1px 1px rgba(0, 0, 0, 0.1);
+            transition: all 0.1s ease-in-out;
+            box-shadow: 0px 5px 0 #8cb18d;;
+        }
+        .send:active{
+            box-shadow: 0px 2px 0 #8cb18d;
+            transform: translateY(3px);
+        }
+        .archivo{
+            border: none;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            margin: 4px 2px;
+            cursor: pointer;
+            background-color: #c4f8ef;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25), inset 0 1px 1px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease-in-out;
+        }
+        .mensajes{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            color: #000000;
+            display: flex;
+            justify-content: center;
+            
+        }
+    </style>
     <body>
-        <h1>Personal Information Form</h1>
-        <form method="POST" id="myform" enctype="multipart/form-data">
-            {% csrf_token %}
-            <input type="file" id="fileInput" name ="file"/>
-            <button type="button" id="submitButton">Enviar a Flask</button>
-        </form>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-            $(document).ready(function(){
-                $("#submitButton").click(function(e){
-                    e.preventDefault();
-                    var form=new FormData();
-                    form.append("data",$("#inputdata").val());
-                    form.append("file",$("#fileInput")[0].files[0]);
-                    var csrfToken=$("input[name=csrfmiddlewaretoken]").val();
-                    form.append("csrfmiddlewaretoken",csrfToken);
-                    $.ajax({
-                        type:"POST",
-                        url:"",
-                        data:form,
-                        processData:false,
-                        contentType:false,
-                        success:function(response){
-                            $("#response").html(response.message);
-                        },
+        <h1 class="titulo">Personal Information Form</h1>
+        <div class="container">
+            <form method="POST" id="myform" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label class="mensajes">Iicializar sistema</label><br>
+                <button class="send"type="button" id="resetButton">Incializar sistema</button>
+                <label class="mensajes">Mensajes:</label><br>
+                <input class="archivo" type="file" id="fileInput" name ="file">
+                <button class="send"type="button" id="submitButton" onclick="alertar('archivo enviado con exito')">Enviar a Flask</button>
+            </form>
+            <script type="text/javascript">
+                function alertar(texto) {
+                    var fileInput = document.getElementById("fileInput");
+                    if (fileInput.files.length === 0) {
+                        alert("Por favor, seleccione un archivo.");
+                        return;
+                    }
+                    // Si el archivo existe, se muestra el mensaje de éxito.
+                    alert(texto);
+                    }
+            </script>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+                $(document).ready(function(){
+                    $("#submitButton").click(function(e){
+                        e.preventDefault();
+                        var form=new FormData();
+                        form.append("data",$("#inputdata").val());
+                        form.append("file",$("#fileInput")[0].files[0]);
+                        var csrfToken=$("input[name=csrfmiddlewaretoken]").val();
+                        form.append("csrfmiddlewaretoken",csrfToken);
+                        $.ajax({
+                            type:"POST",
+                            url:"",
+                            data:form,
+                            processData:false,
+                            contentType:false,
+                            success:function(response){
+                                $("#response").html(response.message);
+                            },
+                        })
                     })
+                
                 })
-            })
-        </script>  
+            </script>
+        </div>
+        
     </body>
     </html>

@@ -54,7 +54,24 @@ def get_config():
     print("positivos: ",positivos)
     print("negativos: ",negativos)
     return jsonify({"state":"Perfect","message":"The file was uploaded successfully"})
-
+@app.route('/incializar',methods=['POST'])
+def inciar():
+    lista_mensaje.inicializar()
+    positivos.clear()
+    negativos.clear()
+    lista_mensaje.recorrer()
+    print("Sistema reiniciado")
+    return jsonify({"state":"Perfect","message":"The list was initialized successfully"})
+@app.route('/get_hashtags',methods=['GET'])
+def get_hashtags():
+    hashtags=lista_mensaje.devolver_hashtags()
+    print(hashtags)
+    return jsonify({"state":"Perfect","hashtags":hashtags})
+@app.route('/get_menciones',methods=['GET'])
+def get_menciones():
+    menciones=lista_mensaje.get_menciones()
+    print(menciones)
+    return jsonify({"state":"Perfect","menciones":menciones})
 if __name__ == '__main__':  
     app.run(debug=True,port=5000)
 
