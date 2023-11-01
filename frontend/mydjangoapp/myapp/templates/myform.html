@@ -63,17 +63,46 @@
             justify-content: center;
             
         }
+        .peticiones{
+            border: none;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            background-color: #c4f8c6;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25), inset 0 1px 1px rgba(0, 0, 0, 0.1);
+            transition: all 0.1s ease-in-out;
+            box-shadow: 0px 5px 0 #8cb18d;;
+        }
+        .peticiones:active{
+            box-shadow: 0px 2px 0 #8cb18d;
+            transform: translateY(3px);
+        }
     </style>
     <body>
-        <h1 class="titulo">Personal Information Form</h1>
+        <h1 class="titulo">Sistema de mensajes</h1>
         <div class="container">
             <form method="POST" id="myform" enctype="multipart/form-data">
                 {% csrf_token %}
-                <label class="mensajes">Iicializar sistema</label><br>
+                <label class="mensajes">Inicializar sistema</label><br>
                 <button class="send"type="button" id="resetButton">Incializar sistema</button>
                 <label class="mensajes">Mensajes:</label><br>
                 <input class="archivo" type="file" id="fileInput" name ="file">
                 <button class="send"type="button" id="submitButton" onclick="alertar('archivo enviado con exito')">Enviar a Flask</button>
+                <br>
+                <br>
+                <label class="mensajes">Configuracion:</label><br>
+                <input class="archivo" type="file" id="fileInput" name ="file">
+                <button class="send"type="button" id="submit2Button" onclick="alertar('archivo enviado con exito')">Enviar a Flask</button>
+                <br>
+                <br>
+                <label class="mensajes">Peticiones:</label><br>
+                <button class="peticiones" type="button" id="peticionesButton">Peticiones</button>
             </form>
             <script type="text/javascript">
                 function alertar(texto) {
@@ -100,6 +129,21 @@
                             type:"POST",
                             url:"",
                             data:form,
+                            processData:false,
+                            contentType:false,
+                            success:function(response){
+                                $("#response").html(response.message);
+                            },
+                        })
+                    })
+                    $("#resetButton").click(function(e){
+                        e.preventDefault();
+                        var form=new FormData();
+                        var csrfToken=$("input[name=csrfmiddlewaretoken]").val();
+                        form.append("csrfmiddlewaretoken",csrfToken);
+                        $.ajax({
+                            type:"POST",
+                            url:"",
                             processData:false,
                             contentType:false,
                             success:function(response){
