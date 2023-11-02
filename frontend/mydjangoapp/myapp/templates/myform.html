@@ -97,8 +97,8 @@
                 <br>
                 <br>
                 <label class="mensajes">Configuracion:</label><br>
-                <input class="archivo" type="file" id="fileInput" name ="file">
-                <button class="send"type="button" id="submit2Button" onclick="alertar('archivo enviado con exito')">Enviar a Flask</button>
+                <input class="archivo" type="file" id="fileInput2" name ="file">
+                <button class="send"type="button" id="submitButton" onclick="alertar2('archivo enviado con exito')">Enviar a Flask</button>
                 <br>
                 <br>
                 <label class="mensajes">Peticiones:</label><br>
@@ -114,6 +114,15 @@
                     // Si el archivo existe, se muestra el mensaje de éxito.
                     alert(texto);
                     }
+                function alertar2(texto) {
+                var fileInput = document.getElementById("fileInput2");
+                if (fileInput.files.length === 0) {
+                    alert("Por favor, seleccione un archivo.");
+                    return;
+                }
+                // Si el archivo existe, se muestra el mensaje de éxito.
+                alert(texto);
+                }
             </script>
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script>

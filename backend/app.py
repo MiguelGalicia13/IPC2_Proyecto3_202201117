@@ -3,8 +3,6 @@ from flask_cors import CORS
 import xml.etree.ElementTree as ET
 from mensajes.lista_mensaje import lista_mensaje
 lista_mensaje = lista_mensaje()
-positivos=[]
-negativos=[]
 app = Flask(__name__)
 
 
@@ -45,18 +43,15 @@ def get_config():
     print(root.tag)
     for positive in root.findall("sentimientos_positivos"):
         for palabra in positive.findall("palabra"):
-            positivos.append(palabra.text)
+            lista_mensaje.add_positivos(palabra.text)
     for negative in root.findall("sentimientos_negativos"):
         for palabra in negative.findall("palabra"):
-            negativos.append(palabra.text)
-    print("positivos: ",positivos)
-    print("negativos: ",negativos)
+            lista_mensaje.add_negativos(palabra.text)
+    print(lista_mensaje.get_sentimientos())
     return jsonify({"state":"Perfect","message":"The file was uploaded successfully"})
 @app.route('/incializar',methods=['POST'])
 def inciar():
     lista_mensaje.inicializar()
-    positivos.clear()
-    negativos.clear()
     lista_mensaje.recorrer()
     print("Sistema reiniciado")
     return jsonify({"state":"Perfect","message":"The list was initialized successfully"})
@@ -70,6 +65,11 @@ def get_menciones():
     menciones=lista_mensaje.get_menciones()
     print(menciones)
     return jsonify({"state":"Perfect","menciones":menciones})
+@app.route('/definir_msj',methods=['GET'])
+def definir_msj():
+    lista_mensaje.definir_mensaje()
+    return lista_mensaje.definir_mensaje()
+
 if __name__ == '__main__':  
     app.run(debug=True,port=5000)
 

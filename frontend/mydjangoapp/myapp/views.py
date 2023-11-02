@@ -12,9 +12,9 @@ def myform_view(request):
         try:
             # Envía la solicitud al backend de Flask con el archivo adjunto
             files = {"file": (file.name, file.read())}
-            if file.name =="mensajes":
+            if file.name =="mensajes.xml":
                 response = requests.post('http://127.0.0.1:5000/grabar_mensaje', data={"data": data}, files=files)
-            elif file.name =="configuracion":
+            if file.name =="configuracion.xml":
                 response = requests.post('http://http://127.0.0.1:5000/get_configuracion', data={"data": data}, files=files)
             response.raise_for_status()
             # Procesa la respuesta del backend de Flask
