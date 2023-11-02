@@ -29,9 +29,7 @@ def grabar_mensaje():
     return jsonify({"state":"Perfect","message":"The file was uploaded successfully"})
 @app.route('/get_mensaje',methods=['GET'])
 def get_mensaje():
-    mensajes=lista_mensaje.devolver_mensaje()
-    print(mensajes)
-    return jsonify({"state":"Perfect","messages":mensajes})
+    return lista_mensaje.devolver_mensaje()
 @app.route('/get_configuracion',methods=['POST'])
 def get_config():
     if 'file' not in request.files:
