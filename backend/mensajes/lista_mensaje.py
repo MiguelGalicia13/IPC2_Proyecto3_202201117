@@ -41,8 +41,11 @@ class lista_mensaje:
         if self.head == None:
             print("Lista vacia")
             return "Lista vacia"
+        #Genera un formato JSON para los mensajes
         return json.dumps([msj.dump() for msj in self.mensajes],indent=4)
+    
     def inicializar(self):
+        #Reinicia el sistema
         self.head = None
         self.mensajes_count = 0
         self.mensajes=[]
@@ -58,24 +61,24 @@ class lista_mensaje:
             return "Lista vacia"
         aux = self.head
         while aux:
-            for palabra in aux.mensaje.texto.split():
-                regex = r'^#[a-zA-Z0-9_\-]+\#$'
+            for palabra in aux.mensaje.texto.split(): #Recorre cada palabra del mensaje
+                regex = r'^#[a-zA-Z0-9_\-]+\#$' #Expresión regular para hashtags
                 match = re.match(regex, palabra)
                 if match:
-                    hashtags.append(palabra)
+                    hashtags.append(palabra) #Si la palabra es un hashtag, lo agrega a la lista
             aux = aux.siguiente
-        return json.dumps(hashtags)
+        return json.dumps(hashtags) #Devuelve la lista de hashtags en formato JSON
     def get_menciones(self):
-        regex = r'^@[a-zA-Z0-9_\-]+$'
+        regex = r'^@[a-zA-Z0-9_\-]+$' #Expresión regular para menciones
         if self.head == None:
             print("Lista vacia")
             return "Lista vacia"
         aux = self.head
         while aux:
             for palabra in aux.mensaje.texto.split():
-                if re.match(regex, palabra):self.menciones.append(palabra)
+                if re.match(regex, palabra):self.menciones.append(palabra) #Si la palabra es una mención, la agrega a la lista
             aux = aux.siguiente
-        return json.dumps(self.menciones)
+        return json.dumps(self.menciones) #Devuelve la lista de menciones en formato JSON
     def get_sentimientos(self):
         for positivo in self.positivos:
             print(positivo)
@@ -85,6 +88,7 @@ class lista_mensaje:
         print("Mensaje Negativos: ",self.negativos_count)
     
     def definir_mensaje(self):
+        #Genera contadores de los mensajes para cada tipo de mensajes
         count_positivos=0
         count_negativos=0
         lista_mensajes=[]
@@ -93,21 +97,21 @@ class lista_mensaje:
             return "Lista vacia"
         aux = self.head
         while aux:
-            for palabra in aux.mensaje.texto.split():
-                if palabra in self.positivos:
+            for palabra in aux.mensaje.texto.split(): #Recorre cada palabra del mensaje
+                if palabra in self.positivos: #Si la palabra está en la lista de positivos, aumenta el contador de positivos
                     count_positivos+=1
-                if palabra in self.negativos:
+                if palabra in self.negativos: #Si la palabra está en la lista de negativos, aumenta el contador de negativos
                     count_negativos+=1
-            if count_positivos>count_negativos: lista_mensajes.append("Positivo")
-            elif count_positivos<count_negativos: lista_mensajes.append("Negativo")
-            else: lista_mensajes.append("Neutro")
+            if count_positivos>count_negativos: lista_mensajes.append("Positivo") #Si el contador de positivos es mayor al de negativos, el mensaje es positivo
+            elif count_positivos<count_negativos: lista_mensajes.append("Negativo") #Si el contador de negativos es mayor al de positivos, el mensaje es negativo
+            else: lista_mensajes.append("Neutro") #Si los contadores son iguales, el mensaje es neutro
             aux = aux.siguiente
         x=0
         y=0
         z=0
-        for mensaje in lista_mensajes:
-            if mensaje=="Positivo":x+=1
-            elif mensaje=="Negativo":y+=1
-            elif mensaje=="Neutro":z+=1
+        for mensaje in lista_mensajes: #Cuenta cuántos mensajes hay de cada tipo
+            if mensaje=="Positivo":x+=1 #Si el mensaje es positivo, aumenta el contador de positivos
+            elif mensaje=="Negativo":y+=1 #Si el mensaje es negativo, aumenta el contador de negativos
+            elif mensaje=="Neutro":z+=1 #Si el mensaje es neutro, aumenta el contador de neutros
         response={"Mensajes positivos: ":x,"Mensajes negativos: ":y,"Mensajes neutros: ":z,"Total de mensajes: ":x+y+z}
         return response
