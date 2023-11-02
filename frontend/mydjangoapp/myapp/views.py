@@ -12,7 +12,10 @@ def myform_view(request):
         try:
             # Envía la solicitud al backend de Flask con el archivo adjunto
             files = {"file": (file.name, file.read())}
-            response = requests.post('http://127.0.0.1:5000/grabar_mensaje', data={"data": data}, files=files)
+            if file.name =="mensajes":
+                response = requests.post('http://127.0.0.1:5000/grabar_mensaje', data={"data": data}, files=files)
+            elif file.name =="configuracion":
+                response = requests.post('http://http://127.0.0.1:5000/get_configuracion', data={"data": data}, files=files)
             response.raise_for_status()
             # Procesa la respuesta del backend de Flask
             response_data = response.json()
@@ -22,14 +25,8 @@ def myform_view(request):
     return render(request, 'myform.html')
 
 def myform_view2(request):
-    if request.method =='POST':
-        try:
-            # Envía la solicitud al backend de Flask
-            response = requests.get('http://127.0.0.1:5000/incializar')
-            response.raise_for_status()
-            # Procesa la respuesta del backend de Flask
-            response_data = response.json()
-            return JsonResponse(response_data)
-        except requests.exceptions.RequestException as e:
-            return HttpResponse(str(e), status=500)
+    
+    return render(request, 'peticiones.html')
 
+def index(request):
+    return render(request, 'index.html')
